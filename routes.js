@@ -2,6 +2,7 @@ const mongoose = require ("mongoose");
 const express = require("express");
 const routes = express.Router();
 const User = require(__dirname+"/Schema/User");
+const bodyParser = require('body-parser');
 
 
 const Connect = (callBack) => {
@@ -26,19 +27,21 @@ routes.get("/Results", (req, res) => {
     res.sendFile(__dirname+'/public/views/results.html');
 });
 
-routes.post("/ReceiveInput", (req, res) => {
+routes.post("/ReceiveInput", bodyParser, (req, res) => {
+    console.log(req.body);
     Connect((err) => {
+        console.log(req.body);
         let newEntry = new User({
-            techPref: q1,
-            watchAnime: q2,
-            repairRights: q4,
-            muiscGenre: q3,
-            phonePref: q5,
-            countryVisit: q6,
-            employment: q7,
-            hobby: q8,
-            ruralOrUrban: q9,
-            dogsOrCats: q10,
+            techPref: req.body.q1,
+            watchAnime: req.body.q2,
+            repairRights: req.body.q4,
+            muiscGenre: req.body.q3,
+            phonePref: req.body.q5,
+            countryVisit: req.body.q6,
+            employment: req.body.q7,
+            hobby: req.body.q8,
+            ruralOrUrban: req.body.q9,
+            dogsOrCats: req.body.q10,
         });
         newEntry.save((err) => {
             console.log(err);
