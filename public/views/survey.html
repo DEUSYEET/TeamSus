@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sus data collection</title>
     <link rel="stylesheet" href="../css/style.css">
+    <title>Sus data collection</title>
 </head>
 
 <body>
@@ -249,7 +249,7 @@
                         <label for="Cats">Cats</label><br>
                     </div>
                     <div class="forward">
-                        <input type="submit">
+                        <input id="submitBtn" type="submit">
                     </div>
                 </div>
             </fieldset>
@@ -259,6 +259,13 @@
 
 
 <script>
+    let submitBtn = document.getElementById("submitBtn");
+    submitBtn.addEventListener("click", onSubmit());
+
+    function onSubmit() {
+        console.log("it works");
+    }
+
     let index = 0;
     let questions = document.getElementsByClassName("questionContainer");
     questions[0].style.display = "block"
